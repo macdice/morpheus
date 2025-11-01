@@ -1,0 +1,14 @@
+Goals:
+
+* a DSL for describing morphology in human languages
+* compact and clear notation, readable by humans
+* variant forms should be modeled (national variations, spelling reforms)
+* a tool should be able to generate all forms
+* Python as development language
+* output should be checked against existing open source data sets
+* a classic conjugation website is one output
+* a way to drive some kind of e-reader plugin that allows verb forms to be analysed
+* initial targets Spanish, French, Latin
+* later other language families
+
+Initial sketch example grammar is just some ideas, end result could be completely different...
