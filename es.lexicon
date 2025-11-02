@@ -1,0 +1,155 @@
+begin lexicon es;
+
+# ============================================================================
+# REGULAR VERBS
+# ============================================================================
+
+# Regular -AR verbs (most common conjugation class)
+verb hablar;      # to speak
+verb trabajar;    # to work
+verb estudiar;    # to study
+verb llamar;      # to call
+verb llevar;      # to carry, wear
+verb dejar;       # to leave, let
+verb pasar;       # to pass, happen
+verb quedar;      # to stay, remain
+verb cambiar;     # to change
+verb mirar;       # to look at
+verb esperar;     # to wait, hope
+verb escuchar;    # to listen
+verb comprar;     # to buy
+verb tomar;       # to take, drink
+verb viajar;      # to travel
+verb ayudar;      # to help
+verb cantar;      # to sing
+verb bailar;      # to dance
+verb nadar;       # to swim
+verb ganar;       # to win, earn
+verb amar;        # to love
+verb odiar;       # to hate
+verb cocinar;     # to cook
+verb limpiar;     # to clean
+verb contestar;   # to answer
+verb preguntar;   # to ask
+verb entrar;      # to enter
+verb mandar;      # to send, command
+verb usar;        # to use
+verb necesitar;   # to need
+
+# Regular -ER verbs
+verb comer;       # to eat
+verb beber;       # to drink
+verb aprender;    # to learn
+verb comprender;  # to understand
+verb vender;      # to sell
+verb correr;      # to run
+verb responder;   # to respond
+verb prometer;    # to promise
+verb temer;       # to fear
+verb romper;      # to break (note: irregular past participle)
+
+# Regular -IR verbs
+verb vivir;       # to live
+verb escribir;    # to write (note: irregular past participle)
+verb recibir;     # to receive
+verb subir;       # to go up, climb
+verb decidir;     # to decide
+verb existir;     # to exist
+verb permitir;    # to permit
+verb sufrir;      # to suffer
+verb asistir;     # to attend
+verb cumplir;     # to fulfill
+
+# ============================================================================
+# STEM-CHANGING VERBS: e→ie
+# ============================================================================
+
+verb pensar (stem-change e→ie);       # to think
+verb querer (stem-change e→ie);       # to want, love
+verb empezar (stem-change e→ie);      # to begin
+verb comenzar (stem-change e→ie);     # to begin
+verb cerrar (stem-change e→ie);       # to close
+verb entender (stem-change e→ie);     # to understand
+verb perder (stem-change e→ie);       # to lose
+verb sentir (stem-change e→ie);       # to feel
+verb preferir (stem-change e→ie);     # to prefer
+verb despertar (stem-change e→ie);    # to wake up
+verb recomendar (stem-change e→ie);   # to recommend
+verb negar (stem-change e→ie);        # to deny
+
+# ============================================================================
+# STEM-CHANGING VERBS: o→ue
+# ============================================================================
+
+verb poder (stem-change o→ue);        # to be able (can)
+verb volver (stem-change o→ue);       # to return
+verb encontrar (stem-change o→ue);    # to find
+verb recordar (stem-change o→ue);     # to remember
+verb contar (stem-change o→ue);       # to count, tell
+verb mostrar (stem-change o→ue);      # to show
+verb dormir (stem-change o→ue);       # to sleep
+verb morir (stem-change o→ue);        # to die
+verb costar (stem-change o→ue);       # to cost
+verb volar (stem-change o→ue);        # to fly
+verb probar (stem-change o→ue);       # to try, taste
+verb sonar (stem-change o→ue);        # to sound, ring
+verb llover (stem-change o→ue);       # to rain
+
+# ============================================================================
+# STEM-CHANGING VERBS: e→i (only -IR verbs)
+# ============================================================================
+
+verb pedir (stem-change e→i);         # to ask for, request
+verb servir (stem-change e→i);        # to serve
+verb seguir (stem-change e→i);        # to follow
+verb repetir (stem-change e→i);       # to repeat
+verb medir (stem-change e→i);         # to measure
+verb conseguir (stem-change e→i);     # to get, obtain
+verb vestir (stem-change e→i);        # to dress
+
+# ============================================================================
+# STEM-CHANGING VERBS: u→ue (rare)
+# ============================================================================
+
+verb jugar (stem-change u→ue);        # to play
+
+# ============================================================================
+# VERBS WITH ORTHOGRAPHIC CHANGES
+# ============================================================================
+
+verb buscar (ortho-rule c→qu before e,i);     # to look for
+verb llegar (ortho-rule g→gu before e,i);     # to arrive
+verb pagar (ortho-rule g→gu before e,i);      # to pay
+verb tocar (ortho-rule c→qu before e,i);      # to touch, play (instrument)
+verb sacar (ortho-rule c→qu before e,i);      # to take out
+verb explicar (ortho-rule c→qu before e,i);   # to explain
+
+# Note: Many stem-changing verbs also have orthographic changes
+# empezar: e→ie AND z→c before e
+# comenzar: e→ie AND z→c before e
+
+# ============================================================================
+# HIGHLY IRREGULAR VERBS (to be added in future)
+# ============================================================================
+
+# These need special handling with custom conjugations:
+# verb ser;         # to be (permanent)
+# verb estar;       # to be (temporary)
+# verb haber;       # to have (auxiliary)
+# verb tener;       # to have
+# verb hacer;       # to do, make
+# verb ir;          # to go
+# verb ver;         # to see
+# verb dar;         # to give
+# verb saber;       # to know (facts)
+# verb poner;       # to put
+# verb decir;       # to say
+# verb venir;       # to come
+# verb salir;       # to leave, go out
+# verb conocer;     # to know (people/places)
+# verb traer;       # to bring
+# verb caer;        # to fall
+# verb oír;         # to hear
+# verb leer;        # to read (note: í→y in some forms)
+
+end lexicon;

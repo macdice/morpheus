@@ -1,0 +1,442 @@
+begin language es;
+
+# Define linguistic categories
+define persons 1, 2, 3;
+define numbers singular, plural;
+define moods indicative, subjunctive, imperative;
+define tenses present, preterite, imperfect, future, conditional;
+
+# Define where stress falls in conjugated forms
+# This is key for stem changes in Spanish
+define stress-position stem, ending;
+
+# Common stem-change patterns in Spanish
+define stem-change e→ie;  # pensar: pienso
+define stem-change o→ue;  # dormir: duermo  
+define stem-change e→i;   # pedir: pido
+define stem-change i→í;   # enviar: envío (accented i)
+
+# Orthographic adjustment patterns
+define ortho-rule c→qu before e,i;  # sacar → saqué
+define ortho-rule g→gu before e,i;  # pagar → pagué
+define ortho-rule z→c before e,i;   # empezar → empecé
+define ortho-rule gu→gü before e,i; # averiguar → averigüé
+define ortho-rule g→j before a,o;   # coger → cojo
+define ortho-rule c→z before a,o;   # vencer → venzo
+
+begin morphology;
+
+# Regular -AR verbs (hablar = to speak)
+define conjugation present indicative for infinitive like "-ar" as
+    1sg  stem  -o,
+    2sg  stem  -as,
+    3sg  stem  -a,
+    1pl  stem  -amos,
+    2pl  stem  -áis,
+    3pl  stem  -an,
+    
+    with
+        stem = infinitive adjusted: (-ar → ∅),
+        stress = ending for 1pl, stem elsewhere;
+
+# Regular -ER verbs (comer = to eat)
+define conjugation present indicative for infinitive like "-er" as
+    1sg  stem  -o,
+    2sg  stem  -es,
+    3sg  stem  -e,
+    1pl  stem  -emos,
+    2pl  stem  -éis,
+    3pl  stem  -en,
+    
+    with
+        stem = infinitive adjusted: (-er → ∅),
+        stress = ending for 1pl, stem elsewhere;
+
+# Regular -IR verbs (vivir = to live)
+define conjugation present indicative for infinitive like "-ir" as
+    1sg  stem  -o,
+    2sg  stem  -es,
+    3sg  stem  -e,
+    1pl  stem  -imos,
+    2pl  stem  -ís,
+    3pl  stem  -en,
+    
+    with
+        stem = infinitive adjusted: (-ir → ∅),
+        stress = ending for 1pl, stem elsewhere;
+
+# Stem-changing -AR verbs with e→ie (pensar = to think)
+# The "boot" pattern: stem changes everywhere except nosotros/vosotros
+define conjugation present indicative for stem-change e→ie and infinitive like "-ar" as
+    1sg  changed-stem  -o,
+    2sg  changed-stem  -as,
+    3sg  changed-stem  -a,
+    1pl  base-stem     -amos,
+    2pl  base-stem     -áis,
+    3pl  changed-stem  -an,
+    
+    with
+        base-stem = infinitive adjusted: (-ar → ∅),
+        changed-stem = base-stem adjusted: (e → ie in final syllable);
+
+# Stem-changing -ER verbs with e→ie (querer, entender, perder)
+define conjugation present indicative for stem-change e→ie and infinitive like "-er" as
+    1sg  changed-stem  -o,
+    2sg  changed-stem  -es,
+    3sg  changed-stem  -e,
+    1pl  base-stem     -emos,
+    2pl  base-stem     -éis,
+    3pl  changed-stem  -en,
+    
+    with
+        base-stem = infinitive adjusted: (-er → ∅),
+        changed-stem = base-stem adjusted: (e → ie in final syllable);
+
+# Stem-changing -IR verbs with e→ie (sentir, preferir)
+define conjugation present indicative for stem-change e→ie and infinitive like "-ir" as
+    1sg  changed-stem  -o,
+    2sg  changed-stem  -es,
+    3sg  changed-stem  -e,
+    1pl  base-stem     -imos,
+    2pl  base-stem     -ís,
+    3pl  changed-stem  -en,
+    
+    with
+        base-stem = infinitive adjusted: (-ir → ∅),
+        changed-stem = base-stem adjusted: (e → ie in final syllable);
+
+# Stem-changing verbs with o→ue pattern (encontrar, poder, dormir)
+# For -AR verbs
+define conjugation present indicative for stem-change o→ue and infinitive like "-ar" as
+    1sg  changed-stem  -o,
+    2sg  changed-stem  -as,
+    3sg  changed-stem  -a,
+    1pl  base-stem     -amos,
+    2pl  base-stem     -áis,
+    3pl  changed-stem  -an,
+    
+    with
+        base-stem = infinitive adjusted: (-ar → ∅),
+        changed-stem = base-stem adjusted: (o → ue in final syllable);
+
+# For -ER verbs (poder, volver)
+define conjugation present indicative for stem-change o→ue and infinitive like "-er" as
+    1sg  changed-stem  -o,
+    2sg  changed-stem  -es,
+    3sg  changed-stem  -e,
+    1pl  base-stem     -emos,
+    2pl  base-stem     -éis,
+    3pl  changed-stem  -en,
+    
+    with
+        base-stem = infinitive adjusted: (-er → ∅),
+        changed-stem = base-stem adjusted: (o → ue in final syllable);
+
+# For -IR verbs (dormir, morir)
+define conjugation present indicative for stem-change o→ue and infinitive like "-ir" as
+    1sg  changed-stem  -o,
+    2sg  changed-stem  -es,
+    3sg  changed-stem  -e,
+    1pl  base-stem     -imos,
+    2pl  base-stem     -ís,
+    3pl  changed-stem  -en,
+    
+    with
+        base-stem = infinitive adjusted: (-ir → ∅),
+        changed-stem = base-stem adjusted: (o → ue in final syllable);
+
+# Stem-changing -IR verbs with e→i pattern (pedir, servir)
+define conjugation present indicative for stem-change e→i as
+    1sg  changed-stem  -o,
+    2sg  changed-stem  -es,
+    3sg  changed-stem  -e,
+    1pl  base-stem     -imos,
+    2pl  base-stem     -ís,
+    3pl  changed-stem  -en,
+    
+    with
+        base-stem = infinitive adjusted: (-ir → ∅),
+        changed-stem = base-stem adjusted: (e → i in final syllable);
+
+# Stem-changing verb with u→ue pattern (jugar - unique!)
+define conjugation present indicative for stem-change u→ue as
+    1sg  changed-stem  -o,
+    2sg  changed-stem  -as,
+    3sg  changed-stem  -a,
+    1pl  base-stem     -amos,
+    2pl  base-stem     -áis,
+    3pl  changed-stem  -an,
+    
+    with
+        base-stem = infinitive adjusted: (-ar → ∅),
+        changed-stem = base-stem adjusted: (u → ue in final syllable);
+
+# Preterite for -AR verbs
+define conjugation preterite indicative for infinitive like "-ar" as
+    1sg  stem  -é,
+    2sg  stem  -aste,
+    3sg  stem  -ó,
+    1pl  stem  -amos,
+    2pl  stem  -asteis,
+    3pl  stem  -aron,
+    
+    with
+        stem = infinitive adjusted: (-ar → ∅),
+        stress = ending;
+
+# Preterite for -ER/-IR verbs (identical except for 1pl)
+define conjugation preterite indicative for infinitive like "-er" or "-ir" as
+    1sg  stem  -í,
+    2sg  stem  -iste,
+    3sg  stem  -ió,
+    1pl  stem  -imos,
+    2pl  stem  -isteis,
+    3pl  stem  -ieron,
+    
+    with
+        stem = infinitive adjusted: (-er → ∅, -ir → ∅),
+        stress = ending;
+
+# Imperfect for -AR verbs (most regular tense in Spanish!)
+define conjugation imperfect indicative for infinitive like "-ar" as
+    1sg  stem  -aba,
+    2sg  stem  -abas,
+    3sg  stem  -aba,
+    1pl  stem  -ábamos,
+    2pl  stem  -abais,
+    3pl  stem  -aban,
+    
+    with
+        stem = infinitive adjusted: (-ar → ∅),
+        stress = stem for 1pl, ending elsewhere;
+
+# Imperfect for -ER/-IR verbs
+define conjugation imperfect indicative for infinitive like "-er" or "-ir" as
+    1sg  stem  -ía,
+    2sg  stem  -ías,
+    3sg  stem  -ía,
+    1pl  stem  -íamos,
+    2pl  stem  -íais,
+    3pl  stem  -ían,
+    
+    with
+        stem = infinitive adjusted: (-er → ∅, -ir → ∅),
+        stress = ending;
+
+# Future (same for all conjugations - add to infinitive)
+define conjugation future indicative as
+    1sg  infinitive  -é,
+    2sg  infinitive  -ás,
+    3sg  infinitive  -á,
+    1pl  infinitive  -emos,
+    2pl  infinitive  -éis,
+    3pl  infinitive  -án,
+    
+    with
+        stress = ending;
+
+# Conditional (same for all conjugations)
+define conjugation conditional indicative as
+    1sg  infinitive  -ía,
+    2sg  infinitive  -ías,
+    3sg  infinitive  -ía,
+    1pl  infinitive  -íamos,
+    2pl  infinitive  -íais,
+    3pl  infinitive  -ían,
+    
+    with
+        stress = ending;
+
+# Present subjunctive for -AR verbs (opposite vowel: a→e)
+define conjugation present subjunctive for infinitive like "-ar" as
+    1sg  stem  -e,
+    2sg  stem  -es,
+    3sg  stem  -e,
+    1pl  stem  -emos,
+    2pl  stem  -éis,
+    3pl  stem  -en,
+    
+    with
+        stem = infinitive adjusted: (-ar → ∅),
+        stress = ending for 1pl, stem elsewhere;
+
+# Present subjunctive for -ER/-IR verbs (opposite vowel: e/i→a)
+define conjugation present subjunctive for infinitive like "-er" or "-ir" as
+    1sg  stem  -a,
+    2sg  stem  -as,
+    3sg  stem  -a,
+    1pl  stem  -amos,
+    2pl  stem  -áis,
+    3pl  stem  -an,
+    
+    with
+        stem = infinitive adjusted: (-er → ∅, -ir → ∅),
+        stress = ending for 1pl, stem elsewhere;
+
+# Present subjunctive for stem-changing e→ie verbs
+define conjugation present subjunctive for stem-change e→ie and infinitive like "-ar" as
+    1sg  changed-stem  -e,
+    2sg  changed-stem  -es,
+    3sg  changed-stem  -e,
+    1pl  base-stem     -emos,
+    2pl  base-stem     -éis,
+    3pl  changed-stem  -en,
+    
+    with
+        base-stem = infinitive adjusted: (-ar → ∅),
+        changed-stem = base-stem adjusted: (e → ie in final syllable);
+
+define conjugation present subjunctive for stem-change e→ie and infinitive like "-er" as
+    1sg  changed-stem  -a,
+    2sg  changed-stem  -as,
+    3sg  changed-stem  -a,
+    1pl  base-stem     -amos,
+    2pl  base-stem     -áis,
+    3pl  changed-stem  -an,
+    
+    with
+        base-stem = infinitive adjusted: (-er → ∅),
+        changed-stem = base-stem adjusted: (e → ie in final syllable);
+
+define conjugation present subjunctive for stem-change e→ie and infinitive like "-ir" as
+    1sg  changed-stem  -a,
+    2sg  changed-stem  -as,
+    3sg  changed-stem  -a,
+    1pl  base-stem     -amos,
+    2pl  base-stem     -áis,
+    3pl  changed-stem  -an,
+    
+    with
+        base-stem = infinitive adjusted: (-ir → ∅),
+        changed-stem = base-stem adjusted: (e → ie in final syllable);
+
+# Present subjunctive for stem-changing o→ue verbs
+define conjugation present subjunctive for stem-change o→ue and infinitive like "-ar" as
+    1sg  changed-stem  -e,
+    2sg  changed-stem  -es,
+    3sg  changed-stem  -e,
+    1pl  base-stem     -emos,
+    2pl  base-stem     -éis,
+    3pl  changed-stem  -en,
+    
+    with
+        base-stem = infinitive adjusted: (-ar → ∅),
+        changed-stem = base-stem adjusted: (o → ue in final syllable);
+
+define conjugation present subjunctive for stem-change o→ue and infinitive like "-er" as
+    1sg  changed-stem  -a,
+    2sg  changed-stem  -as,
+    3sg  changed-stem  -a,
+    1pl  base-stem     -amos,
+    2pl  base-stem     -áis,
+    3pl  changed-stem  -an,
+    
+    with
+        base-stem = infinitive adjusted: (-er → ∅),
+        changed-stem = base-stem adjusted: (o → ue in final syllable);
+
+define conjugation present subjunctive for stem-change o→ue and infinitive like "-ir" as
+    1sg  changed-stem  -a,
+    2sg  changed-stem  -as,
+    3sg  changed-stem  -a,
+    1pl  base-stem     -amos,
+    2pl  base-stem     -áis,
+    3pl  changed-stem  -an,
+    
+    with
+        base-stem = infinitive adjusted: (-ir → ∅),
+        changed-stem = base-stem adjusted: (o → ue in final syllable);
+
+# Present subjunctive for stem-changing e→i verbs (-ir only)
+define conjugation present subjunctive for stem-change e→i as
+    1sg  changed-stem  -a,
+    2sg  changed-stem  -as,
+    3sg  changed-stem  -a,
+    1pl  base-stem     -amos,
+    2pl  base-stem     -áis,
+    3pl  changed-stem  -an,
+    
+    with
+        base-stem = infinitive adjusted: (-ir → ∅),
+        changed-stem = base-stem adjusted: (e → i in final syllable);
+
+# Imperfect subjunctive -ra form for -AR verbs
+# Based on preterite 3pl: hablaron → habla-ra
+define conjugation imperfect subjunctive -ra for infinitive like "-ar" as
+    1sg  stem  -ra,
+    2sg  stem  -ras,
+    3sg  stem  -ra,
+    1pl  stem  -ramos,
+    2pl  stem  -rais,
+    3pl  stem  -ran,
+    
+    with
+        stem = infinitive adjusted: (-r → ∅),
+        stress = ending for 1pl, stem elsewhere;
+
+# Imperfect subjunctive -se form for -AR verbs  
+# Based on preterite 3pl: hablaron → habla-se
+define conjugation imperfect subjunctive -se for infinitive like "-ar" as
+    1sg  stem  -se,
+    2sg  stem  -ses,
+    3sg  stem  -se,
+    1pl  stem  -semos,
+    2pl  stem  -seis,
+    3pl  stem  -sen,
+    
+    with
+        stem = infinitive adjusted: (-r → ∅),
+        stress = ending for 1pl, stem elsewhere;
+
+# Imperfect subjunctive -ra form for -ER/-IR verbs
+# Based on preterite 3pl: comieron → comie-ra, vivieron → vivie-ra
+define conjugation imperfect subjunctive -ra for infinitive like "-er" or "-ir" as
+    1sg  stem  -ra,
+    2sg  stem  -ras,
+    3sg  stem  -ra,
+    1pl  stem  -ramos,
+    2pl  stem  -rais,
+    3pl  stem  -ran,
+    
+    with
+        stem = infinitive adjusted: (-er → ie, -ir → ie),
+        stress = ending for 1pl, stem elsewhere;
+
+# Imperfect subjunctive -se form for -ER/-IR verbs
+# Based on preterite 3pl: comieron → comie-se, vivieron → vivie-se
+define conjugation imperfect subjunctive -se for infinitive like "-er" or "-ir" as
+    1sg  stem  -se,
+    2sg  stem  -ses,
+    3sg  stem  -se,
+    1pl  stem  -semos,
+    2pl  stem  -seis,
+    3pl  stem  -sen,
+    
+    with
+        stem = infinitive adjusted: (-er → ie, -ir → ie),
+        stress = ending for 1pl, stem elsewhere;
+
+# Participles
+define past-participle for infinitive like "-ar" as
+    stem  -ado
+    with stem = infinitive adjusted: (-ar → ∅);
+
+define past-participle for infinitive like "-er" as
+    stem  -ido
+    with stem = infinitive adjusted: (-er → ∅);
+
+define past-participle for infinitive like "-ir" as
+    stem  -ido
+    with stem = infinitive adjusted: (-ir → ∅);
+
+define present-participle for infinitive like "-ar" as
+    stem  -ando
+    with stem = infinitive adjusted: (-ar → ∅);
+
+define present-participle for infinitive like "-er" or "-ir" as
+    stem  -iendo
+    with stem = infinitive adjusted: (-er → ∅, -ir → ∅);
+
+end morphology;
+
+end language;
